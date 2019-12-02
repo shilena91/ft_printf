@@ -1,43 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stdarg.c                                           :+:      :+:    :+:   */
+/*   treatment.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hopham <hopham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/29 10:55:30 by hopham            #+#    #+#             */
-/*   Updated: 2019/12/02 11:11:42 by hopham           ###   ########.fr       */
+/*   Created: 2019/12/02 17:23:39 by hopham            #+#    #+#             */
+/*   Updated: 2019/12/02 18:15:51 by hopham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h>
-#include <stdio.h>
+#include "ft_printf.h"
 
-int	min(int	arg_count, ...)
+int	treatment(t_printf *list)
 {
-	int	i;
-	int	min;
-	int	a;
-	va_list	ap;
-
-	va_start(ap, arg_count);
-	min = va_arg(ap, int);
-	i = 1;
-	printf("%i\n", min);
-	while (i++ < arg_count)
-	{
-		a = va_arg(ap, int);
-		if (a < min)
-			min = a;
-	}
-	va_end(ap);
-	return (min);
+	list->i++;
+	parse_convert(list);
+	parse_field_width(list);
+	parse_specifier(list);
+	display_all(list);
+	return (list->len);	
 }
-/*
-int	main()
-{
-	int	count = 5;
-	printf("Minimum number is: %i", min(count, 12, 6, 7, 67, 1));
-	return (0);
-}
-*/
