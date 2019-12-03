@@ -6,7 +6,7 @@
 #    By: hopham <hopham@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/27 10:56:43 by hopham            #+#    #+#              #
-#    Updated: 2019/12/02 18:07:24 by hopham           ###   ########.fr        #
+#    Updated: 2019/12/03 11:31:09 by hopham           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = printf
 
 LIB = libft/libftprintf.a
 
-FLAGS = -Wextra -Werror -Wall -g
+FLAGS = -Wextra -Werror -Wall
 
 SRCS = ./srcs/
 C_FUNCTIONS = printf parse parse_convert display_gap treatment display_c display_all
@@ -26,8 +26,8 @@ INCLUDES = -I ./includes/ -I ./libft/includes/
 all: $(NAME)
 
 $(NAME):
-	gcc $(FLAGS) -c $(C_FILES) $(INCLUDES)
-	gcc $(FLAGS) $(INCLUDES) -o $(NAME) $(LIB) $(OBJ)
+	gcc  -c $(C_FILES) $(INCLUDES) -g
+	gcc  $(INCLUDES) -o $(NAME) $(LIB) $(OBJ) -g
 
 clean:
 	rm -rf $(OBJ)

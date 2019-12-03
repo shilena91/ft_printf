@@ -6,7 +6,7 @@
 /*   By: hopham <hopham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 12:58:24 by hopham            #+#    #+#             */
-/*   Updated: 2019/12/02 17:59:58 by hopham           ###   ########.fr       */
+/*   Updated: 2019/12/03 12:08:45 by hopham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,7 @@ int	parse(t_printf *list)
 	while (list->format[list->i])
 	{
 		if (list->format[list->i] == '%')
-		{
 			treatment(list);
-		}
 		else
 		{
 			write(1, &list->format[list->i], 1);
@@ -63,18 +61,20 @@ int	ft_printf(const char *format, ...)
 
 int main()
 {
-	/*
-	int	number = 20 - 30;
-	char *pointer = "little";
+	
+	char	c = 'A';
+	char	b = 'B';
+	int		number = 20 - 30;
+	//char *pointer = "little";
 
-	printf("Here is a number %2d and a %s word.\n", number, pointer);
-	printf("%+d \n", number);
-	printf("%-+10d \n", number);
-    printf("%-#10x \n", number);  
-    printf("%#X \n", number);
-	printf("% d\n", number);
-	*/
-	printf("%c\n", 'c');
-	ft_printf("%c\n", 'a');
+	//printf("Here is a number %2d and a %s word.\n", number, pointer);
+	//printf("%+d \n", number);
+	//printf("%-10c, %c", c, b);
+    //printf("%-#10x \n", number);  
+    //printf("%#X \n", number);
+	//printf("% d\n", number);
+
+	//printf("%c\n", 'c');
+	ft_printf("%-10c, %c\n", c, b);
 	return(0);
 }
