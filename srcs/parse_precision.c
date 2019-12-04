@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   treatment.c                                        :+:      :+:    :+:   */
+/*   parse_precision.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hopham <hopham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/02 17:23:39 by hopham            #+#    #+#             */
-/*   Updated: 2019/12/04 17:11:48 by hopham           ###   ########.fr       */
+/*   Created: 2019/12/04 10:43:50 by hopham            #+#    #+#             */
+/*   Updated: 2019/12/04 12:12:55 by hopham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	treatment(t_printf *list)
+t_printf	*parse_precision(t_printf *list)
 {
-	list->i++;
-	parse_convert(list);
-	parse_field_width(list);
-	parse_precision(list);
-	parse_len_mod(list);
-	parse_specifier(list);
-	display_all(list);
-	return (list->len);	
+	list->precision = -1;
+	while (list->format[list->i] == '.')
+	{
+		list->i++;
+		list->precision = 0;
+	}
+	while (list->format[list->i] >= '0' && list->format[list->i] <= '9')
+	{
+		list->precision = list->precision * 10 + (list->format[list->i] -  48);
+		list->i++;
+	}
+	return (list);
 }

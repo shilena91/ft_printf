@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   treatment.c                                        :+:      :+:    :+:   */
+/*   ft_strndup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hopham <hopham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/02 17:23:39 by hopham            #+#    #+#             */
-/*   Updated: 2019/12/04 17:11:48 by hopham           ###   ########.fr       */
+/*   Created: 2019/12/04 10:56:16 by hopham            #+#    #+#             */
+/*   Updated: 2019/12/04 10:59:39 by hopham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	treatment(t_printf *list)
+char	*ft_strndup(const char *s1, size_t n)
 {
-	list->i++;
-	parse_convert(list);
-	parse_field_width(list);
-	parse_precision(list);
-	parse_len_mod(list);
-	parse_specifier(list);
-	display_all(list);
-	return (list->len);	
+	char	*s2;
+	size_t	i;
+
+	i = 0;
+	if (!(s2 = ft_strnew(n)))
+		return (NULL);
+	while (s1[i] && i < n)
+	{
+		s2[i] = s1[i];
+		i++;
+	}
+	return (s2);
 }

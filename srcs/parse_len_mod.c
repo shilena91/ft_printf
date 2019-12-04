@@ -1,25 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   treatment.c                                        :+:      :+:    :+:   */
+/*   parse_len_mod.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hopham <hopham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/02 17:23:39 by hopham            #+#    #+#             */
-/*   Updated: 2019/12/04 17:11:48 by hopham           ###   ########.fr       */
+/*   Created: 2019/12/04 14:11:13 by hopham            #+#    #+#             */
+/*   Updated: 2019/12/04 17:11:51 by hopham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	treatment(t_printf *list)
+t_printf	*parse_len_mod(t_printf *list)
 {
-	list->i++;
-	parse_convert(list);
-	parse_field_width(list);
-	parse_precision(list);
-	parse_len_mod(list);
-	parse_specifier(list);
-	display_all(list);
-	return (list->len);	
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	j = 0;
+	while (list->len_mods[i])
+	{
+		while (list->len_mods[i] == list->format[list->i])
+		{
+			list->len_mods_convert[j] = list->format[list->i];
+			list->i++;
+			j++;
+		}
+		i++;
+	}
+	return (list);
 }

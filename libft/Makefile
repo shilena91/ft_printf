@@ -6,7 +6,7 @@
 #    By: hopham <hopham@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/16 11:46:39 by hopham            #+#    #+#              #
-#    Updated: 2019/11/27 12:24:33 by hopham           ###   ########.fr        #
+#    Updated: 2019/12/04 11:00:45 by hopham           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ SRC = ft_atoi.c ft_bzero.c ft_isalnum.c ft_strupcase.c ft_isupper.c \
 	 ft_strdup.c ft_strequ.c ft_striter.c ft_striteri.c ft_strjoin.c \
 	 ft_strlcat.c ft_strlen.c ft_strmap.c ft_strmapi.c ft_strncat.c \
 	 ft_strncmp.c ft_strncpy.c ft_strnequ.c ft_strnew.c ft_strnstr.c \
-	 ft_strrchr.c  ft_strsplit.c ft_strstr.c ft_countwords.c \
+	 ft_strrchr.c  ft_strsplit.c ft_strstr.c ft_countwords.c ft_strndup.c \
 	 ft_strsub.c ft_strtrim.c ft_tolower.c ft_toupper.c ft_strsplitset.c \
 	 ft_lstadd_end.c ft_lstcount.c ft_lstrev.c ft_get_next_line.c \
 	 

@@ -6,7 +6,7 @@
 /*   By: hopham <hopham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 13:26:06 by hopham            #+#    #+#             */
-/*   Updated: 2019/12/02 17:57:02 by hopham           ###   ########.fr       */
+/*   Updated: 2019/12/04 17:11:00 by hopham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ typedef	struct	s_printf
 	char		specifier_char;
 	char		*flags;
 	char		flag_convert[6];
-	char		*len_arg;
+	char		*len_mods;
+	char		len_mods_convert[2];
 	
 }				t_printf;
 
@@ -38,9 +39,13 @@ int			ft_printf(const char *format, ...);
 t_printf	*parse_convert(t_printf *list);
 t_printf	*parse_field_width(t_printf *list);
 t_printf	*parse_specifier(t_printf *list);
+t_printf	*parse_precision(t_printf *list);
+t_printf	*parse_len_mod(t_printf *list);
 int			treatment(t_printf *list);
 void		display_gap(t_printf *list, char c, int len);
 t_printf	*display_c(t_printf *list);
+t_printf	*display_s(t_printf *list);
+t_printf	*display_i(t_printf *list);
 t_printf	*display_all(t_printf *list);
 
 
