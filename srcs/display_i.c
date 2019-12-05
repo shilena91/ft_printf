@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display_i.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hopham <hopham@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: HoangPham <HoangPham@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 14:46:16 by hopham            #+#    #+#             */
-/*   Updated: 2019/12/04 19:47:31 by hopham           ###   ########.fr       */
+/*   Updated: 2019/12/05 23:26:16 by HoangPham        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ static int	get_num(t_printf *list)
 	return (num);
 }
 
-static	int		n_size(unsigned int nb)
+static	int		n_size(int nb)
 {
-	unsigned int	size;
+	int	size;
 
 	if (nb < 0)
 		nb = nb * -1;
@@ -55,10 +55,33 @@ static char	get_sign(t_printf *list, int nb)
 	return ('\0');
 }
 
+static t_printf	*do_options(t_printf *list, int	i_size, int i)
+{
+	int		not_blank;
+	char	sign;
+
+	not_blank = i_size;
+	sign = get_sign(list, i);
+	i *= (i < 0) ? -1 : 1;
+	if (i_size <= list->precision)
+		not_blank = list->precision;
+	if (sign)
+		not_blank++;
+	if (list->flag_convert[0] != '-')
+		display_gap(list, ' ', list->width - not_blank);
+	if (sign)
+		write(1, &sign, 1);
+	display_gap(list, '0', list->precision - i_size);
+	ft_putnbr(i);
+	if (list->flag_convert[0] == '-')
+		display_gap(list, ' ', list->width - not_blank);
+	return (list);
+}
+
 t_printf	*display_i(t_printf *list)
 {
-	int	i;
-	int	i_size;
+	int		i;
+	int		i_size;
 
 	i = get_num(list);
 	if (i == 0 && list->precision == 0)
@@ -74,5 +97,11 @@ t_printf	*display_i(t_printf *list)
 		return (list);
 	}
 	i_size = n_size(i);
-	if (list->flag_convert[3] == '0' && list->precision == -1)
-}
+	if (list->flag_convert[3] == '0' && list->precision == -1 && !list->flag_convert[0])
+	{
+		list->precision = list->width;
+		if (i < 0 || list->flag_convert[1] || list->flag_convert[2])
+			list->precision--;
+	}
+	return (do_options(list, i_size, i));
+}	
