@@ -6,7 +6,7 @@
 /*   By: HoangPham <HoangPham@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 14:46:16 by hopham            #+#    #+#             */
-/*   Updated: 2019/12/05 23:26:16 by HoangPham        ###   ########.fr       */
+/*   Updated: 2019/12/07 00:00:11 by HoangPham        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ static t_printf	*do_options(t_printf *list, int	i_size, int i)
 		not_blank = list->precision;
 	if (sign)
 		not_blank++;
+	list->len += (not_blank <= list->width) ? list->width : not_blank;
 	if (list->flag_convert[0] != '-')
 		display_gap(list, ' ', list->width - not_blank);
 	if (sign)
