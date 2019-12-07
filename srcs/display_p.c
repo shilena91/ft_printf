@@ -6,13 +6,13 @@
 /*   By: HoangPham <HoangPham@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/06 11:29:38 by HoangPham         #+#    #+#             */
-/*   Updated: 2019/12/07 00:01:07 by HoangPham        ###   ########.fr       */
+/*   Updated: 2019/12/07 23:45:57 by HoangPham        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static		uintmax_t	get_num(t_printf *list)
+static uintmax_t	get_num(t_printf *list)
 {
 	uintmax_t	nb;
 
@@ -20,7 +20,7 @@ static		uintmax_t	get_num(t_printf *list)
 	return (nb);
 }
 
-t_printf	*display_p(t_printf *list)
+t_printf			*display_p(t_printf *list)
 {
 	char		*str;
 	uintmax_t	num;
