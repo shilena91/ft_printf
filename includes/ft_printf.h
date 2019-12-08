@@ -6,7 +6,7 @@
 /*   By: HoangPham <HoangPham@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 13:26:06 by hopham            #+#    #+#             */
-/*   Updated: 2019/12/07 15:03:02 by HoangPham        ###   ########.fr       */
+/*   Updated: 2019/12/08 23:13:03 by HoangPham        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ t_printf	*display_c(t_printf *list);
 t_printf	*display_s(t_printf *list);
 t_printf	*display_i(t_printf *list);
 t_printf    *display_o(t_printf *list);
+t_printf    *display_u(t_printf *list);
+t_printf    *display_x(t_printf *list);
 t_printf    *display_p(t_printf *list);
 t_printf	*display_all(t_printf *list);
 char		*ft_itoa_base(uintmax_t num, int base, char c);

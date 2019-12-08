@@ -6,7 +6,7 @@
 /*   By: HoangPham <HoangPham@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 14:46:16 by hopham            #+#    #+#             */
-/*   Updated: 2019/12/07 00:05:42 by HoangPham        ###   ########.fr       */
+/*   Updated: 2019/12/08 22:45:18 by HoangPham        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,8 @@ t_printf	*display_i(t_printf *list)
 		return (list);
 	}
 	i_size = n_size(i);
-	if (list->flag_convert[3] == '0' && list->precision == -1 && !list->flag_convert[0])
+	if (list->flag_convert[3] == '0' && list->precision == -1 &&
+		!list->flag_convert[0])
 	{
 		list->precision = list->width;
 		if (i < 0 || list->flag_convert[1] || list->flag_convert[2])

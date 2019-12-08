@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display_gap.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hopham <hopham@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: HoangPham <HoangPham@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/02 13:50:09 by hopham            #+#    #+#             */
-/*   Updated: 2019/12/02 17:20:56 by hopham           ###   ########.fr       */
+/*   Updated: 2019/12/08 23:59:24 by HoangPham        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	display_gap(t_printf *list, char c, int len)
 
 	if (len > 0)
 	{
-		list->len = len;
 		if (!(str = ft_strnew(len)))
 			exit(-1);
 		ft_memset(str, c, len);

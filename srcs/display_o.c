@@ -6,7 +6,7 @@
 /*   By: HoangPham <HoangPham@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/07 15:02:04 by HoangPham         #+#    #+#             */
-/*   Updated: 2019/12/08 00:41:17 by HoangPham        ###   ########.fr       */
+/*   Updated: 2019/12/08 23:26:49 by HoangPham        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ static uintmax_t	get_num(t_printf *list)
 	uintmax_t	num;
 
 	if (ft_strcmp(list->len_mods_convert, "hh") == 0)
-		num = (unsigned char)va_arg(list->args, int);
+		num = (unsigned char)va_arg(list->args, unsigned int);
 	else if (ft_strcmp(list->len_mods_convert, "ll") == 0)
-		num = (unsigned long long)va_arg(list->args, long long int);
+		num = (unsigned long long)va_arg(list->args, unsigned long long int);
 	else if (ft_strcmp(list->len_mods_convert, "h") == 0)
-		num = (unsigned short)va_arg(list->args, int);  
+		num = (unsigned short)va_arg(list->args, unsigned int);  
 	else if (ft_strcmp(list->len_mods_convert, "l") == 0)
-		num = (unsigned long)va_arg(list->args, long int);
+		num = (unsigned long)va_arg(list->args, unsigned long int);
 	else
 		num = va_arg(list->args, unsigned int);
 	return (num);
@@ -66,7 +66,8 @@ t_printf			*display_o(t_printf *list)
 	}
 	if (!(str = ft_itoa_base(num, 8, 'a')))
 		exit(-1);
-	if (list->flag_convert[3] == '0' && list->precision == -1 && !list->flag_convert[0])
+	if (list->flag_convert[3] == '0' && list->precision == -1 &&
+		!list->flag_convert[0])
 		list->precision = list->width;
 	return (print_options(list, str, num));
 }
