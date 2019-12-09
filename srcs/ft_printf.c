@@ -6,7 +6,7 @@
 /*   By: HoangPham <HoangPham@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 12:58:24 by hopham            #+#    #+#             */
-/*   Updated: 2019/12/09 01:15:54 by HoangPham        ###   ########.fr       */
+/*   Updated: 2019/12/09 21:32:40 by HoangPham        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_printf	*initialize(t_printf *list)
 	list->len = 0;
 	list->i = 0;
 	list->flags = "0# +-";
-	list->specifier_list = "cspdiouxX";
+	list->specifier_list = "cspdiouxXf";
 	list->len_mods = "lhL";
 	return (list);
 }
@@ -65,7 +65,7 @@ int main()
 	//char	c = 'E';
 	//char	b = 'B';
 	int	*s;
-	int	number = 29;
+	double	number = 20.1634;
 	//char *pointer = "little";
 	//s = "123456789";
 	//printf("Here is a number %2d and a %s word.\n", number, pointer);
@@ -76,7 +76,7 @@ int main()
 	//printf("% d\n", number);
 
 	//printf("%c\n", 'c');
-	printf("%#-04.5X\n", number);
-	ft_printf("%#-04.5X\n", number);
+	printf("%#.f\n", number);
+	ft_printf("%#.f\n", number);
 	return(0);
 }
