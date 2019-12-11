@@ -1,43 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stdarg.c                                           :+:      :+:    :+:   */
+/*   display_exception_char.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hopham <hopham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/29 10:55:30 by hopham            #+#    #+#             */
-/*   Updated: 2019/12/02 11:11:42 by hopham           ###   ########.fr       */
+/*   Created: 2019/12/11 11:16:58 by hopham            #+#    #+#             */
+/*   Updated: 2019/12/11 11:21:28 by hopham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h>
-#include <stdio.h>
+#include "ft_printf.h"
 
-int	min(int	arg_count, ...)
+void	display_exception_char(char c, t_printf *list)
 {
-	int	i;
-	int	min;
-	int	a;
-	va_list	ap;
-
-	va_start(ap, arg_count);
-	min = va_arg(ap, int);
-	i = 1;
-	printf("%i\n", min);
-	while (i++ < arg_count)
+	if (c == '+')
 	{
-		a = va_arg(ap, int);
-		if (a < min)
-			min = a;
+		write(1, "+", 1);
+		list->len++;
 	}
-	va_end(ap);
-	return (min);
+	if (c == ' ')
+	{
+		write(1, " ", 1);
+		list->len++;
+	}
 }
-/*
-int	main()
-{
-	int	count = 5;
-	printf("Minimum number is: %i", min(count, 12, 6, 7, 67, 1));
-	return (0);
-}
-*/

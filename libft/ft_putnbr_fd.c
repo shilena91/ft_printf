@@ -6,7 +6,7 @@
 /*   By: hopham <hopham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/21 09:23:54 by hopham            #+#    #+#             */
-/*   Updated: 2019/10/23 17:54:31 by hopham           ###   ########.fr       */
+/*   Updated: 2019/12/11 10:54:26 by hopham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 #include "libft.h"
 
-void	ft_putnbr_fd(int n, int fd)
+void	ft_putnbr_fd(intmax_t n, int fd)
 {
 	long	nb;
 

@@ -6,15 +6,15 @@
 /*   By: hopham <hopham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/21 09:31:45 by hopham            #+#    #+#             */
-/*   Updated: 2019/10/22 19:56:18 by hopham           ###   ########.fr       */
+/*   Updated: 2019/12/11 16:19:25 by hopham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static	int		n_size(unsigned int nb)
+static	uintmax_t		n_size(intmax_t nb)
 {
-	unsigned int	size;
+	uintmax_t	size;
 
 	size = 0;
 	while (nb >= 10)
@@ -25,14 +25,14 @@ static	int		n_size(unsigned int nb)
 	return (size + 1);
 }
 
-char			*ft_itoa(int n)
+char			*ft_itoa(intmax_t n)
 {
 	char			*str;
-	unsigned int	len;
+	uintmax_t		len;
 	unsigned int	i;
-	unsigned int	nb;
+	uintmax_t		nb;
 
-	nb = (n >= 0) ? (unsigned int)n : (unsigned int)(n * -1);
+	nb = (n >= 0) ? (uintmax_t)n : (uintmax_t)(n * -1);
 	len = n_size(nb);
 	if (!(str = (char*)malloc(sizeof(char) * (len + 1 + (n < 0 ? 1 : 0)))))
 		return (NULL);

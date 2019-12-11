@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   display_i.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: HoangPham <HoangPham@student.42.fr>        +#+  +:+       +#+        */
+/*   By: hopham <hopham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 14:46:16 by hopham            #+#    #+#             */
-/*   Updated: 2019/12/08 22:45:18 by HoangPham        ###   ########.fr       */
+/*   Updated: 2019/12/11 11:20:51 by hopham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	get_num(t_printf *list)
+static intmax_t	get_num(t_printf *list)
 {
-	int	num;
+	intmax_t	num;
 
 	if (ft_strcmp(list->len_mods_convert, "hh") == 0)
 		num = (signed char)va_arg(list->args, int);
@@ -29,7 +29,7 @@ static int	get_num(t_printf *list)
 	return (num);
 }
 
-static	int		n_size(int nb)
+static	int		n_size(intmax_t nb)
 {
 	int	size;
 
@@ -44,7 +44,7 @@ static	int		n_size(int nb)
 	return (size + 1);
 }
 
-static char	get_sign(t_printf *list, int nb)
+static char		get_sign(t_printf *list, intmax_t nb)
 {
 	if (nb < 0)
 		return ('-');
@@ -55,7 +55,7 @@ static char	get_sign(t_printf *list, int nb)
 	return ('\0');
 }
 
-static t_printf	*do_options(t_printf *list, int	i_size, int i)
+static t_printf	*do_i(t_printf *list, int i_size, intmax_t i)
 {
 	int		not_blank;
 	char	sign;
@@ -69,32 +69,32 @@ static t_printf	*do_options(t_printf *list, int	i_size, int i)
 		not_blank++;
 	list->len += (not_blank <= list->width) ? list->width : not_blank;
 	if (list->flag_convert[0] != '-')
-		display_gap(list, ' ', list->width - not_blank);
+		display_gap(list, ' ', list->width - not_blank, 0);
 	if (sign)
 		write(1, &sign, 1);
-	display_gap(list, '0', list->precision - i_size);
+	display_gap(list, '0', list->precision - i_size, 0);
 	ft_putnbr(i);
 	if (list->flag_convert[0] == '-')
-		display_gap(list, ' ', list->width - not_blank);
+		display_gap(list, ' ', list->width - not_blank, 0);
 	return (list);
 }
 
-t_printf	*display_i(t_printf *list)
+t_printf		*display_i(t_printf *list)
 {
-	int		i;
-	int		i_size;
+	intmax_t	i;
+	int			i_size;
 
 	i = get_num(list);
 	if (i == 0 && list->precision == 0)
 	{
 		if (list->flag_convert[0] != '-')
-			display_gap(list, ' ', list->width - 1);
+			display_gap(list, ' ', list->width - 1, 1);
 		if (list->flag_convert[1] == '+')
-			write(1, "+", 1);
+			display_exception_char('+', list);
 		else if (list->flag_convert[2] == ' ')
-			write(1, " ", 1);
+			display_exception_char(' ', list);
 		if (list->flag_convert[0] == '-')
-			display_gap(list, ' ', list->width - 1);
+			display_gap(list, ' ', list->width - 1, 1);
 		return (list);
 	}
 	i_size = n_size(i);
@@ -105,5 +105,5 @@ t_printf	*display_i(t_printf *list)
 		if (i < 0 || list->flag_convert[1] || list->flag_convert[2])
 			list->precision--;
 	}
-	return (do_options(list, i_size, i));
-}	
+	return (do_i(list, i_size, i));
+}

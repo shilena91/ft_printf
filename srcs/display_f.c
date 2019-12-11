@@ -3,87 +3,70 @@
 /*                                                        :::      ::::::::   */
 /*   display_f.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: HoangPham <HoangPham@student.42.fr>        +#+  +:+       +#+        */
+/*   By: hopham <hopham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 01:30:07 by HoangPham         #+#    #+#             */
-/*   Updated: 2019/12/09 21:39:32 by HoangPham        ###   ########.fr       */
+/*   Updated: 2019/12/11 16:46:12 by hopham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-static double   get_num(t_printf *list)
+/*
+static double	get_num(t_printf *list)
 {
-    double  num;
+	double	num;
 
-    if (ft_strcmp(list->len_mods_convert, "L") == 0)
+	if (ft_strcmp(list->len_mods_convert, "L") == 0)
 		num = (long double)va_arg(list->args, long double);
-	else 
+	else
 		num = va_arg(list->args, double);
-    return (num);
+	return (num);
+}
+*/
+
+static char		get_sign(t_printf *list, double nb)
+{
+	if (nb < 0)
+		return ('-');
+	if (list->flag_convert[1] == '+')
+		return ('+');
+	if (list->flag_convert[2] == ' ')
+		return (' ');
+	return ('\0');
 }
 
-static void	place_int(int i_len, char *str, int dec)
+t_printf		*do_f(t_printf *list, char *nb, char sign)
 {
-    i_len--;
-	while (i_len > -1)
-	{
-		str[i_len--] = (dec % 10) + '0';
-		dec /= 10;
-	}
+	int	not_blank;
+
+	not_blank = ft_strlen(nb);
+	not_blank += sign ? 1 : 0;
+	list->len += (not_blank <= list->width) ? list->width : not_blank;
+	if (list->flag_convert[0] != '-' && list->flag_convert[3] != '0')
+		display_gap(list, ' ', list->width - not_blank, 0);
+	if (sign)
+		write(1, &sign, 1);
+	if (list->flag_convert[0] != '-' && list->flag_convert[3] == '0')
+		display_gap(list, '0', list->width - not_blank, 0);
+	ft_putstr(nb);
+	if (list->flag_convert[0] == '-')
+		display_gap(list, ' ', list->width - not_blank, 0);
+	ft_strdel(&nb);
+	return (list);
 }
 
-static int	cheap_pow(int val, int pow)
+t_printf		*display_f(t_printf *list)
 {
-	int	ret;
+	char		*nb;
+	int			dot;
+	long double	num;
+	char		sign;
 
-	ret = 1;
-	while (pow-- > 0)
-		ret *= val;
-	return (ret);
-}
-
-static char	*ft_ftoa(long double f, int precision, int dot)
-{
-	uintmax_t	dec;
-	uintmax_t	frac;
-	char		*str;
-	int			dlen;
-	uintmax_t	i;
-    int         d;
-    double      rounding;
-
-    rounding = 0.5;
-    d = 0;
-    while (d++ < precision)
-        rounding /= 10.0;
-    f += rounding;
-	dec = f;
-	frac = precision ? (f - dec) * cheap_pow(10, precision) : 0;
-	i = dec;
-	dlen = 1;
-	while (i > 9 && dlen++)
-		i /= 10;
-	if (!(str = ft_strnew(dlen + precision + 1)))
-		return (0);
-	place_int(dlen, str, dec);
-	(frac || dot) ? str[dlen++] = '.' : 0;
-	i = dlen + precision - 1;
-	while (precision-- > 0)
-	{
-		str[i--] = frac ? (frac % 10) + '0' : '0';
-		frac /= 10;
-	}
-	return (str);
-}
-
-t_printf    *display_f(t_printf *list)
-{
-    char    *nb;
-    int     dot;
-    double  num;
-
-    num = get_num(list);
+	if (ft_strcmp(list->len_mods_convert, "L") == 0)
+		num = va_arg(list->args, long double);
+	else
+		num = (double)va_arg(list->args, double);
+	sign = get_sign(list, num);
 	if (list->precision == -1)
 		list->precision = 6;
 	dot = 0;
@@ -91,6 +74,5 @@ t_printf    *display_f(t_printf *list)
 		dot = 1;
 	if (!(nb = ft_ftoa(num, list->precision, dot)))
 		exit(-1);
-	ft_putstr(nb);
-    return (list);
+	return (do_f(list, nb, sign));
 }

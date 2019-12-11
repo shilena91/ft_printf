@@ -3,34 +3,52 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: HoangPham <HoangPham@student.42.fr>        +#+  +:+       +#+        */
+/*   By: hopham <hopham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 12:58:24 by hopham            #+#    #+#             */
-/*   Updated: 2019/12/09 21:32:40 by HoangPham        ###   ########.fr       */
+/*   Updated: 2019/12/11 18:09:24 by hopham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "ft_printf.h"
 
-t_printf	*initialize(t_printf *list)
+static t_printf	*initialize(t_printf *list)
 {
 	list->len = 0;
 	list->i = 0;
 	list->flags = "0# +-";
-	list->specifier_list = "cspdiouxXf";
+	list->specifier_list = "cspdiouxXf%";
 	list->len_mods = "lhL";
 	return (list);
 }
 
-int	parse(t_printf *list)
+static t_printf	*reintialize(t_printf *list)
+{
+	list->specifier_char = '\0';
+	list->flag_convert[0] = '\0';
+	list->flag_convert[1] = '\0';
+	list->flag_convert[2] = '\0';
+	list->flag_convert[3] = '\0';
+	list->flag_convert[4] = '\0';
+	list->len_mods_convert[0] = '\0';
+	list->len_mods_convert[1] = '\0';
+	list->precision = -1;
+	list->width = 0;
+	return (list);
+}
+
+static int		parse(t_printf *list)
 {
 	if (ft_strcmp(list->format, "%") == 0)
 		return (0);
 	while (list->format[list->i])
 	{
 		if (list->format[list->i] == '%')
+		{
+			reintialize(list);
 			treatment(list);
+		}
 		else
 		{
 			write(1, &list->format[list->i], 1);
@@ -41,7 +59,7 @@ int	parse(t_printf *list)
 	return (list->len);
 }
 
-int	ft_printf(const char *format, ...)
+int				ft_printf(const char *format, ...)
 {
 	t_printf	*list;
 
@@ -57,26 +75,4 @@ int	ft_printf(const char *format, ...)
 	}
 	free(list);
 	return (list->len);
-}
-
-int main()
-{
-	
-	//char	c = 'E';
-	//char	b = 'B';
-	int	*s;
-	double	number = 20.1634;
-	//char *pointer = "little";
-	//s = "123456789";
-	//printf("Here is a number %2d and a %s word.\n", number, pointer);
-	//printf("%+d \n", number);
-	//printf("%-10c, %c", c, b);
-    //printf("%-#10x \n", number);  
-    //printf("%#X \n", number);
-	//printf("% d\n", number);
-
-	//printf("%c\n", 'c');
-	printf("%#.f\n", number);
-	ft_printf("%#.f\n", number);
-	return(0);
 }

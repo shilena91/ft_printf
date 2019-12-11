@@ -6,7 +6,7 @@
 /*   By: hopham <hopham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 10:17:25 by hopham            #+#    #+#             */
-/*   Updated: 2019/12/04 11:00:15 by hopham           ###   ########.fr       */
+/*   Updated: 2019/12/11 16:16:52 by hopham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ size_t				ft_lstcount(t_list *list);
 void				ft_lstrev(t_list **list);
 
 void				ft_putchar(char c);
-void				ft_putnbr(int nb);
+void				ft_putnbr(intmax_t nb);
 void				ft_putstr(const char *str);
 void				*ft_memset(void *b, int c, size_t len);
 void				*ft_memcpy(void *dst, const void *src, size_t n);
@@ -93,8 +93,8 @@ void				ft_putendl(char const *s);
 void				ft_putchar_fd(char c, int fd);
 void				ft_putstr_fd(char const *s, int fd);
 void				ft_putendl_fd(char const *s, int fd);
-void				ft_putnbr_fd(int n, int fd);
-char				*ft_itoa(int n);
+void				ft_putnbr_fd(intmax_t n, int fd);
+char				*ft_itoa(intmax_t n);
 char				**ft_strsplitcharset(char *str, const char *charset);
 
 #endif
