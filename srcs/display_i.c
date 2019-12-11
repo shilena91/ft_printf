@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display_i.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hopham <hopham@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: HoangPham <HoangPham@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 14:46:16 by hopham            #+#    #+#             */
-/*   Updated: 2019/12/11 11:20:51 by hopham           ###   ########.fr       */
+/*   Updated: 2019/12/11 23:42:51 by HoangPham        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,14 +87,16 @@ t_printf		*display_i(t_printf *list)
 	i = get_num(list);
 	if (i == 0 && list->precision == 0)
 	{
-		if (list->flag_convert[0] != '-')
+		if (list->flag_convert[0] != '-' && list->flag_convert[1] == '+')
 			display_gap(list, ' ', list->width - 1, 1);
 		if (list->flag_convert[1] == '+')
 			display_exception_char('+', list);
 		else if (list->flag_convert[2] == ' ')
 			display_exception_char(' ', list);
-		if (list->flag_convert[0] == '-')
+		if (list->flag_convert[0] == '-' && list->flag_convert[1] == '+')
 			display_gap(list, ' ', list->width - 1, 1);
+		else if (list->flag_convert[0] == '-')
+			display_gap(list, ' ', list->width, 1);
 		return (list);
 	}
 	i_size = n_size(i);

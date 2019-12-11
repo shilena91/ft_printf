@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hopham <hopham@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: HoangPham <HoangPham@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 12:58:24 by hopham            #+#    #+#             */
-/*   Updated: 2019/12/11 18:09:24 by hopham           ###   ########.fr       */
+/*   Updated: 2019/12/11 22:09:31 by HoangPham        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int		parse(t_printf *list)
 {
 	if (ft_strcmp(list->format, "%") == 0)
 		return (0);
-	while (list->format[list->i])
+	while (list->format[list->i] != '\0')
 	{
 		if (list->format[list->i] == '%')
 		{

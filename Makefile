@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hopham <hopham@student.hive.fi>            +#+  +:+       +#+         #
+#    By: HoangPham <HoangPham@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/27 10:56:43 by hopham            #+#    #+#              #
-#    Updated: 2019/12/11 17:43:06 by hopham           ###   ########.fr        #
+#    Updated: 2019/12/11 22:56:54 by HoangPham        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,9 +34,9 @@ $(NAME): all
 	make -C $(LIB_FODER)
 	@cp $(LIB) .
 	gcc $(FLAGS) $(INCLUDES) -c $(C_FILES)
-	#gcc $(FLAGS) $(INCLUDES) $(LIB) $(OBJ) main.c
-	ar rc $(NAME) $(OBJ)
-	ranlib $(NAME)
+	gcc $(INCLUDES) $(LIB) $(OBJ) main.c -g
+	#ar rc $(NAME) $(OBJ)
+	#ranlib $(NAME)
 
 clean:
 	rm -rf $(OBJ) $(LIB_OBJ)
