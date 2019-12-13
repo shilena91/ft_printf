@@ -6,7 +6,7 @@
 /*   By: hopham <hopham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:00:22 by hopham            #+#    #+#             */
-/*   Updated: 2019/12/11 17:38:14 by hopham           ###   ########.fr       */
+/*   Updated: 2019/12/12 10:39:02 by hopham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static long double	rounding(int precision, long double f)
 	return (rounding);
 }
 
-char			*ft_ftoa(long double f, int precision, int dot)
+char				*ft_ftoa(long double f, int precision, int dot)
 {
 	unsigned long long	dec;
 	char				*str_int;

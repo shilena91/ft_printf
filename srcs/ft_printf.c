@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: HoangPham <HoangPham@student.42.fr>        +#+  +:+       +#+        */
+/*   By: hopham <hopham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 12:58:24 by hopham            #+#    #+#             */
-/*   Updated: 2019/12/11 22:09:31 by HoangPham        ###   ########.fr       */
+/*   Updated: 2019/12/13 16:07:19 by hopham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ static t_printf	*initialize(t_printf *list)
 	list->flags = "0# +-";
 	list->specifier_list = "cspdiouxXf%";
 	list->len_mods = "lhL";
+	list->specifier_char = '\0';
+	list->f_copy = (char *)list->format;
 	return (list);
 }
 
@@ -40,20 +42,22 @@ static t_printf	*reintialize(t_printf *list)
 
 static int		parse(t_printf *list)
 {
-	if (ft_strcmp(list->format, "%") == 0)
+	if (ft_strcmp(list->f_copy, "%") == 0)
 		return (0);
-	while (list->format[list->i] != '\0')
+	while (list->f_copy[list->i] != '\0')
 	{
-		if (list->format[list->i] == '%')
+		if (list->f_copy[list->i] == '%')
 		{
 			reintialize(list);
 			treatment(list);
 		}
 		else
 		{
-			write(1, &list->format[list->i], 1);
+			write(1, &list->f_copy[list->i], 1);
 			list->len++;
 		}
+		if (list->f_copy[list->i] == '\0')
+			break ;
 		list->i++;
 	}
 	return (list->len);
@@ -65,8 +69,8 @@ int				ft_printf(const char *format, ...)
 
 	if (!(list = (t_printf*)ft_memalloc(sizeof(t_printf))))
 		return (-1);
-	list = initialize(list);
 	list->format = format;
+	list = initialize(list);
 	if (format)
 	{
 		va_start(list->args, format);

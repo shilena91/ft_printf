@@ -6,13 +6,13 @@
 /*   By: hopham <hopham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/21 09:31:45 by hopham            #+#    #+#             */
-/*   Updated: 2019/12/11 16:19:25 by hopham           ###   ########.fr       */
+/*   Updated: 2019/12/12 15:58:55 by hopham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static	uintmax_t		n_size(intmax_t nb)
+static uintmax_t	n_size(intmax_t nb)
 {
 	uintmax_t	size;
 
@@ -25,7 +25,7 @@ static	uintmax_t		n_size(intmax_t nb)
 	return (size + 1);
 }
 
-char			*ft_itoa(intmax_t n)
+char				*ft_itoa(intmax_t n)
 {
 	char			*str;
 	uintmax_t		len;

@@ -6,25 +6,23 @@
 /*   By: hopham <hopham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 13:26:06 by hopham            #+#    #+#             */
-/*   Updated: 2019/12/11 18:10:54 by hopham           ###   ########.fr       */
+/*   Updated: 2019/12/13 15:40:34 by hopham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# define BGREEN "\033[1;32m"
-# define BRED "\033[1;31m"
-# define BBLUE "\033[1;34m"
-
 # include <stdarg.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include "libft.h"
+# include "limits.h"
 
 typedef	struct	s_printf
 {
 	const char	*format;
+	char		*f_copy;
 	va_list		args;
 	int			len;
 	size_t		i;
@@ -54,10 +52,12 @@ t_printf		*display_u(t_printf *list);
 t_printf		*display_x(t_printf *list);
 t_printf		*display_p(t_printf *list);
 t_printf		*display_f(t_printf *list);
-t_printf		*display_percent(t_printf *list);
+t_printf		*display_other(t_printf *list);
 t_printf		*display_all(t_printf *list);
 char			*ft_itoa_base(uintmax_t num, int base, char c);
 char			*ft_ftoa(long double f, int precision, int dot);
 void			display_exception_char(char c, t_printf *list);
+char			get_sign(t_printf *list, double nb);
+void			ft_putnbrmax_fd(uintmax_t n, int fd);
 
 #endif

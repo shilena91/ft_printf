@@ -6,11 +6,11 @@
 #    By: hopham <hopham@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/16 11:46:39 by hopham            #+#    #+#              #
-#    Updated: 2019/12/04 11:00:45 by hopham           ###   ########.fr        #
+#    Updated: 2019/12/12 11:28:38 by hopham           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libftprintf.a
+NAME = libft.a
 
 SRC = ft_atoi.c ft_bzero.c ft_isalnum.c ft_strupcase.c ft_isupper.c \
 		ft_isalpha.c ft_isascii.c ft_isdigit.c ft_isprint.c \

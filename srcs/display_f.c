@@ -6,34 +6,11 @@
 /*   By: hopham <hopham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/09 01:30:07 by HoangPham         #+#    #+#             */
-/*   Updated: 2019/12/11 16:46:12 by hopham           ###   ########.fr       */
+/*   Updated: 2019/12/12 15:16:59 by hopham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-/*
-static double	get_num(t_printf *list)
-{
-	double	num;
-
-	if (ft_strcmp(list->len_mods_convert, "L") == 0)
-		num = (long double)va_arg(list->args, long double);
-	else
-		num = va_arg(list->args, double);
-	return (num);
-}
-*/
-
-static char		get_sign(t_printf *list, double nb)
-{
-	if (nb < 0)
-		return ('-');
-	if (list->flag_convert[1] == '+')
-		return ('+');
-	if (list->flag_convert[2] == ' ')
-		return (' ');
-	return ('\0');
-}
 
 t_printf		*do_f(t_printf *list, char *nb, char sign)
 {

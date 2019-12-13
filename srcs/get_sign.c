@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_specifier.c                                  :+:      :+:    :+:   */
+/*   get_sign.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hopham <hopham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/10 17:51:28 by hopham            #+#    #+#             */
-/*   Updated: 2019/12/13 15:45:07 by hopham           ###   ########.fr       */
+/*   Created: 2019/12/12 10:41:06 by hopham            #+#    #+#             */
+/*   Updated: 2019/12/13 14:08:50 by hopham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-t_printf	*parse_specifier(t_printf *list)
+char	get_sign(t_printf *list, double nb)
 {
-	size_t	j;
-
-	j = 0;
-	while (list->specifier_list[j])
-	{
-		if (list->f_copy[list->i] == list->specifier_list[j])
-			list->specifier_char = list->specifier_list[j];
-		j++;
-	}
-	return (list);
+	if (nb < 0)
+		return ('-');
+	if (list->flag_convert[1] == '+')
+		return ('+');
+	if (list->flag_convert[2] == ' ')
+		return (' ');
+	return ('\0');
 }

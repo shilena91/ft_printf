@@ -6,7 +6,7 @@
 /*   By: hopham <hopham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/02 17:41:52 by hopham            #+#    #+#             */
-/*   Updated: 2019/12/10 19:22:45 by hopham           ###   ########.fr       */
+/*   Updated: 2019/12/13 14:47:14 by hopham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_printf	*display_all(t_printf *list)
 		display_p(list);
 	else if (specifier == 'f')
 		display_f(list);
-	else if (specifier == '%')
-		display_percent(list);
+	else
+		display_other(list);
 	return (list);
 }

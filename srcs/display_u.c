@@ -6,7 +6,7 @@
 /*   By: hopham <hopham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/08 22:42:10 by HoangPham         #+#    #+#             */
-/*   Updated: 2019/12/10 18:23:34 by hopham           ###   ########.fr       */
+/*   Updated: 2019/12/12 19:11:52 by hopham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ static uintmax_t	get_num(t_printf *list)
 	else if (ft_strcmp(list->len_mods_convert, "l") == 0)
 		num = (unsigned long)va_arg(list->args, unsigned long int);
 	else
-		num = va_arg(list->args, unsigned int);
+		num = (unsigned int)va_arg(list->args, unsigned int);
+	num = (uintmax_t)num;
 	return (num);
 }
 
@@ -65,7 +66,7 @@ t_printf			*display_u(t_printf *list)
 	if (list->flag_convert[0] != '-')
 		display_gap(list, ' ', list->width - not_blank, 0);
 	display_gap(list, '0', list->precision - num_width, 0);
-	ft_putnbr(num);
+	ft_putnbrmax_fd(num, 1);
 	if (list->flag_convert[0] == '-')
 		display_gap(list, ' ', list->width - not_blank, 0);
 	return (list);

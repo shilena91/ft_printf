@@ -6,7 +6,7 @@
 /*   By: hopham <hopham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/07 15:02:04 by HoangPham         #+#    #+#             */
-/*   Updated: 2019/12/10 18:24:02 by hopham           ###   ########.fr       */
+/*   Updated: 2019/12/12 11:20:32 by hopham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static uintmax_t	get_num(t_printf *list)
 	else if (ft_strcmp(list->len_mods_convert, "l") == 0)
 		num = (unsigned long)va_arg(list->args, unsigned long int);
 	else
-		num = va_arg(list->args, unsigned int);
+		num = (unsigned int)va_arg(list->args, unsigned int);
 	return (num);
 }
 

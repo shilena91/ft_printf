@@ -6,7 +6,7 @@
 /*   By: hopham <hopham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/04 10:43:50 by hopham            #+#    #+#             */
-/*   Updated: 2019/12/10 17:51:42 by hopham           ###   ########.fr       */
+/*   Updated: 2019/12/13 15:44:59 by hopham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 t_printf	*parse_precision(t_printf *list)
 {
 	list->precision = -1;
-	while (list->format[list->i] == '.')
+	while (list->f_copy[list->i] == '.')
 	{
 		list->i++;
 		list->precision = 0;
 	}
-	while (list->format[list->i] >= '0' && list->format[list->i] <= '9')
+	while (list->f_copy[list->i] >= '0' && list->f_copy[list->i] <= '9')
 	{
-		list->precision = list->precision * 10 + (list->format[list->i] - 48);
+		list->precision = list->precision * 10 + (list->f_copy[list->i] - 48);
 		list->i++;
 	}
 	return (list);

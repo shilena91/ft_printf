@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_specifier.c                                  :+:      :+:    :+:   */
+/*   ft_putnbrmax_fd.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hopham <hopham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/10 17:51:28 by hopham            #+#    #+#             */
-/*   Updated: 2019/12/13 15:45:07 by hopham           ###   ########.fr       */
+/*   Created: 2019/12/12 19:09:28 by hopham            #+#    #+#             */
+/*   Updated: 2019/12/12 19:12:28 by hopham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-t_printf	*parse_specifier(t_printf *list)
+void	ft_putnbrmax_fd(uintmax_t n, int fd)
 {
-	size_t	j;
+	uintmax_t	nb;
 
-	j = 0;
-	while (list->specifier_list[j])
+	nb = n;
+	if (nb < 0)
 	{
-		if (list->f_copy[list->i] == list->specifier_list[j])
-			list->specifier_char = list->specifier_list[j];
-		j++;
+		ft_putchar_fd('-', fd);
+		nb = -n;
 	}
-	return (list);
+	if (nb < 10)
+	{
+		ft_putchar_fd(nb + '0', fd);
+		return ;
+	}
+	ft_putnbr_fd(nb / 10, fd);
+	ft_putnbr_fd(nb % 10, fd);
 }
