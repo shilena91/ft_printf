@@ -6,7 +6,7 @@
 /*   By: hopham <hopham@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 13:26:06 by hopham            #+#    #+#             */
-/*   Updated: 2019/12/13 15:40:34 by hopham           ###   ########.fr       */
+/*   Updated: 2019/12/18 12:01:45 by hopham           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@
 # include <stdlib.h>
 # include "libft.h"
 # include "limits.h"
+
+# define BLUE "\033[0;34m"
+# define BGREEN "\033[1;32m"
+# define BRED "\033[1;31m"
+# define BBLUE "\033[1;34m"
 
 typedef	struct	s_printf
 {
