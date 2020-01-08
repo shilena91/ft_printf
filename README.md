@@ -6,7 +6,7 @@ Project ft_printf at Hive Helsinki. I have to reproduce function printf in C lan
 
 ## Function's limit:
 
-1. It only works with `dicspouxX` conversions, with flags `hh, ll, l, L`
+1. It only works with `dicspouxXf` conversions, with flags `hh, ll, l, L`
 2. It doesn't give exact result with precision bigger than 19 with float type as original printf.
 3. It doesn't explicily define -0 and 0 with float type as original printf.
 4. It doesn't cover undefined behaviors.
